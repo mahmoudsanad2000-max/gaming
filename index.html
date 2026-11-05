@@ -211,7 +211,7 @@ function makeProceduralProductChair(seed=0){
  return g;
 }
 function createProductViewer(canvas,p){
- if(!THREE||!canvas)return null;
+ if(!canvas)return null;if(!THREE){if(p.image){const img=document.createElement('img');img.src=p.image;img.alt=p.name;img.style.cssText='width:100%;height:100%;object-fit:contain;padding:14px;position:relative;z-index:1';canvas.replaceWith(img)}else{const note=document.createElement('div');note.textContent='3D preview unavailable';note.style.cssText='position:relative;z-index:1;color:#ff7180;font-size:12px';canvas.replaceWith(note)}return null}
  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.35));renderer.outputColorSpace=THREE.SRGBColorSpace;
  const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.set(4.2,2.8,6.2);camera.lookAt(0,2,0);
  scene.add(new THREE.HemisphereLight(0xffffff,0x25202a,2));const key=new THREE.DirectionalLight(0xffffff,2.5);key.position.set(4,6,5);scene.add(key);const rim=new THREE.PointLight(0xff263b,16,10);rim.position.set(-3,3,1);scene.add(rim);
